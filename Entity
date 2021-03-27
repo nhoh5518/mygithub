@@ -1,0 +1,55 @@
+// Camel Case : 단어를 표기할 때 첫 문자는 소문자로 시작하며 띄어쓰기 대신 대문자로 단어를 구분
+// Snake Case : 단어를 표기할 때 모두 소문자로 표기하며, 띄어쓰기 대신 _로 표기
+
+// Entity : JPA에서는 테이블을 자동으로 생성해주는 기능 존재(DB Table == JPA Entity)
+//   @Entity : 해당 Class가 Entity임을 명시
+//   @Table : 실제 DB테이블의 이름을 명시
+//   @Id : Index primary key를 명시
+//   @Column : 실제 DB Column의 이름을 명시
+//   @GeneratedValue : Primary key 식별기 전략 설정
+
+
+//Entity 생성
+package com.example.study.model.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+//@Table(nema="user") : Table명과 Entity명이 다를경우 사용
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    //@Column(name="account") : 컬럼명과 변수명이 다를경우 사용
+    private String account;
+    private String password;
+    private String status;
+    private String email;
+    private String phoneNumber;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
+    private LocalDateTime createdAt;
+    private String createdBy;
+    private LocalDateTime updatedAt;
+    private String updatedBy;
+}
+
+
+//Repository 생성
+package com.example.study.repository;
+
+import com.example.study.model.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User,Long> {
+}
