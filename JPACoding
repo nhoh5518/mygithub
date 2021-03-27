@@ -9,6 +9,10 @@ private User user;  //객체이름으로 선언해도 userId로 가져온다.
 private Item item;
 
 //이 경우 User에도 아래 변수를 추가 해야함
+// LAZY : 지연로딩 , EAGER : 즉시로딩
+// LAZY = SELECT * FROM item where id =?
+// EAGER = 모든항목에 대해 조인 후 id로 검색, 1:1일때 사용
+    
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 private List<OrderDetail> orderDetailList;
 //Item에서도 변수를 추가해야함
