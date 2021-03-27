@@ -1,0 +1,19 @@
+package com.example.study.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data  //기본 생성자, GETSET메서드까지 생성
+@AllArgsConstructor  //모든 매개변수를 가지는 생성자 추가
+public class SearchParam {
+
+    private String account;
+    private String email;
+    private int page;
+
+}
+
+//build.gradle의 dependencies 입력사항
+//  compile 'org.projectlombok:lombok:1.18.10'
+//  annotationProcessor 'org.projectlombok:lombok:1.18.10'
+//  ->롬복 라이브러리 추가
