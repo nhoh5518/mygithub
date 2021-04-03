@@ -1,0 +1,30 @@
+//CRUD : Create, Read, Update, Delete
+
+
+package com.example.study.repository;
+
+import com.example.study.StudyApplicationTests;
+import com.example.study.model.entity.User;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
+
+public class UserRepositoryTest extends StudyApplicationTests {
+
+    // Dependency Injection (DI)
+    @Autowired
+    private UserRepository userRepository;
+
+    @Test
+    public void read() {
+        // select * form user where id=?
+        Optional<User> user = userRepository.findById(2L);
+
+        user.ifPresent(selectUser ->{
+            System.out.println("user : "+selectUser);
+            System.out.println("email : "+selectUser.getEmail());
+        });
+    }
+   
+}
