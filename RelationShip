@@ -1,0 +1,12 @@
+    @ManyToOne // N:1
+    private User user;  
+    //자동으로 user_id를 찾아감(user_id == 외래키)
+    
+    @ManyToOne
+    private Item item; 
+    // 자동으로 item_id를 찾아감(item_id == 외래키)
+    
+    // 다대일(N:1) : @ManyToOne
+    // 일대다(1:N) : @OneToMany
+    // 일대일(1:1) : @OneToOne
+    // 다대다(N:M) : @ManyToMany
