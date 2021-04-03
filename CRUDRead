@@ -1,14 +1,12 @@
-//CRUD : Create, Read, Update, Delete
-
-
 package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
 import com.example.study.model.entity.User;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
 
 public class UserRepositoryTest extends StudyApplicationTests {
 
@@ -17,14 +15,12 @@ public class UserRepositoryTest extends StudyApplicationTests {
     private UserRepository userRepository;
 
     @Test
+    @Transactional
     public void read() {
-        // select * form user where id=?
-        Optional<User> user = userRepository.findById(2L);
-
-        user.ifPresent(selectUser ->{
-            System.out.println("user : "+selectUser);
-            System.out.println("email : "+selectUser.getEmail());
-        });
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assert.assertNotNull(user);
     }
-   
+
+    
 }
+
