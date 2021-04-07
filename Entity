@@ -7,7 +7,12 @@
 //   @Id : Index primary key를 명시
 //   @Column : 실제 DB Column의 이름을 명시
 //   @GeneratedValue : Primary key 식별기 전략 설정
-
+//   @NoArgsConstructor : parameter가 존재하지 않는 기본 생성자 추가
+//   @AllArgsConstructor : 모든 parameter를 이용하는 생성자 추가
+//   @Getter/@Setter : getter, setter 추가
+//   @ToString : toString() 메서드 오버라이드
+//   @EqualsAndHashCode : equals(Object) 메서드, hashCode() 메서드 오버라이드
+//   @Data : @Getter/@Setter, @ToString, @EqualsAndHashCode 등의 코드를 한 번에 생성
 
 //Entity 생성
 package com.example.study.model.entity;
