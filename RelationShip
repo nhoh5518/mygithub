@@ -1,3 +1,9 @@
+    // 서로 상호참조 하다보면 toString이 서로 반복실행됨
+    // 그래서 클래스에 어노테이션을 추가해야함
+    
+    @ToString(exclude = {"orderGroup"})   
+    
+    
     @ManyToOne // N:1
     private User user;  
     //자동으로 user_id를 찾아감(user_id == 외래키)
@@ -5,6 +11,9 @@
     @ManyToOne
     private Item item; 
     // 자동으로 item_id를 찾아감(item_id == 외래키)
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<OrderGroup> orderGroupList;
     
     // 다대일(N:1) : @ManyToOne
     // 일대다(1:N) : @OneToMany
