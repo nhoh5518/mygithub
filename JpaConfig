@@ -1,0 +1,5 @@
+
+@Configuration        // 설정파일이라고 명시
+@EnableJpaAuditing    // JPA에 대한 감시 활성화
+public class JpaConfig{
+}
