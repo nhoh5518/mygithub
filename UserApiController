@@ -1,0 +1,18 @@
+
+@RestController
+@RequestMapping("/api/user")
+public class UserApiController {
+    
+    public Header create(){
+    
+    }
+    public Header read(){
+    
+    }
+    public Header update(){
+    
+    }
+    public Header delete(){
+    
+    }
+}
