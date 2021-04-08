@@ -1,0 +1,37 @@
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
+ 
+    Optional<User> findByAccount(String account);
+        // select * from user where id = ? 
+    
+    Optional<User> findByEmail(String email);
+        // select * from user where email = ?
+    
+    Optional<User> findByAccountAndEmail(String account, String email);
+        // select * from user where account = ? and email = ?
+}
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Item {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String name;
+    
+    private Integer price;
+    
+    private String content;
+    
+    // LAZY = 지연로딩, EAGER = 즉시로딩
+    
+    // LAZY : select * from item where id=?
+    // EAGER : Join(모든 경우의 수) - 1:1에 쓰임    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;    
+}
