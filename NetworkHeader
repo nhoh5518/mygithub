@@ -1,0 +1,32 @@
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Header<T> {
+    // api 통신 시간
+    //@JasonProperty("transaction_time")    // JSON으로 출력될때 이름 정의
+    private String transactionTime;
+    
+    // api 응답 코드
+    private String resultCode;
+    
+    // api 부가 설명
+    private String description;
+    
+    private T data;
+}
+
+
+// GetController에서 테스트 
+@GetMapping("/header")
+public Header getHeader(){
+
+    return Header.builder().resultCode("OK").description("OK").build();
+    // 출력(JSON 형식)
+    // {"resultCode" : "OK", "description" : "OK"}
+}
+
+
+
+// JSON으로 출력될때 모든 변수 이름 snakecase로 설정 방법
+spring.jackson.property-naming-strategy=SNAKE_CASE      // application.properties에 입력
