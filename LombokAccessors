@@ -1,0 +1,46 @@
+// 객체 생성
+// Builder 생성 -> @Builder 어노테이션 추가
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@ToString(exclude="{orderGroupList}")
+@EntityListeners(AuditingentityListener.class)
+@Builder
+@Accessors(chain = true)    //체이닝된 형태로 객체 생성, 수정 가능
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    //@Column(name="account") : 컬럼명과 변수명이 다를경우 사용
+    private String account;
+    private String password;
+    private String status;
+    private String email;
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @CreatedBy
+    private String createdBy;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    @LastModifiedBy
+    private String updatedBy;
+    @OneToMany(fetch=Fetch.LAZY, mappedBy="user")
+    private List<OrderGroup> orderGroupList;
+}
+
+
+// Builder 사용볍
+
+User user1 = userReopsitory.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+
+//기존 방식
+//user1.setEmail("");
+//user1.setStatus(""); .... 
+
+//체인 방식
+user1.setEmail("").setStatus("").setPhoneNumber("");
+
+User user2 = new User.setAccount("").setEmail("").setPassword("");
+                
