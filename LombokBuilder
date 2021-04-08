@@ -1,0 +1,41 @@
+// 객체 생성
+// Builder 생성 -> @Builder 어노테이션 추가
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@ToString(exclude="{orderGroupList}")
+@EntityListeners(AuditingentityListener.class)
+@Builder    // Builder 생성
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    //@Column(name="account") : 컬럼명과 변수명이 다를경우 사용
+    private String account;
+    private String password;
+    private String status;
+    private String email;
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @CreatedBy
+    private String createdBy;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    @LastModifiedBy
+    private String updatedBy;
+    @OneToMany(fetch=Fetch.LAZY, mappedBy="user")
+    private List<OrderGroup> orderGroupList;
+}
+
+
+// Builder 사용볍
+
+User user = User.builder()
+                .account(account)
+                .password(password)
+                .status(status)
+                .email(email)
+                .build();
+                
