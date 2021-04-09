@@ -1,0 +1,13 @@
+
+@Service
+public class UserApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
+
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Override
+    public Header<UserApiResponse> create(UserApiRequest request) {
+        return null;
+    }
+
+}
