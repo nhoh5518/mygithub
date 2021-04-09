@@ -1,0 +1,2 @@
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;  // REGISTERED, UNREGISTERED, WAITING
