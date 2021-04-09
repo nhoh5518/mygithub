@@ -1,4 +1,5 @@
 
+@Slf4J  // log
 @RestController
 @RequestMapping("/api/user")
 public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
@@ -9,6 +10,7 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
     @Override
     @PostMapping("")             // /api/user
     public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request){
+        log.info("{}", request);        // request.toString() 로그가 남는다
         return userApiLogicService.create(request);
     }
 }
