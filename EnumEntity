@@ -1,2 +1,13 @@
+
+// entity.User 수정
     @Enumerated(EnumType.STRING)
     private UserStatus status;  // REGISTERED, UNREGISTERED, WAITING
+
+// request.UserApiRequest 수정
+    // String -> UserStatus
+    private UserStatus status;
+    
+
+// response.UserApiResponse 수정
+    // String -> UserStatus
+    private UserStatus status;
