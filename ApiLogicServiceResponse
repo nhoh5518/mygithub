@@ -1,0 +1,19 @@
+
+@Service
+public class UserApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
+
+    private Header<UserApiResponse> response(User user) {
+        
+        // user -> userApiResponse
+        UserApiResponse userApiResponse = UserApiResponse.builder()
+                                                      .id(user.getId())
+                                                      .account(user.getAccount())
+                                                      .password(user.getPassword())
+                                                      .status(user.getStatus())
+                                                      .registeredAt(user.getRegisteredAt())
+                                                      .unregisteredAt(user.getUnregisteredAt())
+                                                      .build();
+        // Heaader + data return
+        return Header.OK(userApiResponse);
+   }
+}
