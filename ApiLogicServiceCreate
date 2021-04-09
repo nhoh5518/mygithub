@@ -6,7 +6,21 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     private UserRepository userRepository;
     
     @Override
-    public Header<UserApiResponse> create(UserApiRequest request) {
+    public Header<UserApiResponse> create(Header<UserApiRequest> request) {
+    
+        UserApiRequest userApiRequest = request.getData();
+        
+        User user = User.builder()
+                        .account(userApiRequest.getAccount())
+                        .password(userApiRequest.getPassword())
+                        .status("REGISTERED")
+                        .phoneNumber(userApiRequest.getPhoneNumber())
+                        .email(userApiRequest.getEmail())
+                        .registeredAt(LocalDateTime.now())
+                        .build();
+                        
+        User newUser = userRepository.save(user;
+        
         return null;
     }
 
