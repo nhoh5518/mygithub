@@ -1,0 +1,14 @@
+
+@RestController
+@RequestMapping("/api/user")
+public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
+
+    @Autowired
+    private UserApiLogicService userApiLogicService;
+    
+    @Override
+    @PostMapping("")             // /api/user
+    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request){
+        return userApiLogicService.create(request);
+    }
+}
