@@ -1,0 +1,8 @@
+// Paging 설정시 controller에 추가할 사항
+// Pageable -> import org.springframework.data.domain.Pageable;
+
+    @GetMapping("")
+    public Header<List<Res>> search(@PageableDefault(sort = "id",direction = Sort.Direction.ASC, size = 15) Pageable pageable){
+        log.info("{}", pageable);
+        return baseService.search(pageable);
+    }
