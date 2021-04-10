@@ -1,0 +1,29 @@
+// CrudInterface에 추가할 사항
+
+Header<List<Res>> search(Pageable pageable);
+
+// CrudInterface에 상속 되어 있는 각 ApiLogicService에 추가할 사항
+    @Override
+    public Header<List<UserApiResponse>> search(Pageable pageable) {
+
+        Page<User> users = baseRepository.findAll(pageable);
+
+        List<UserApiResponse> userApiResponseList = users.stream()
+                .map(this::response)
+                .collect(Collectors.toList());
+
+        // 현재 데이터타입 List<UserApiResponse>
+        // Header<List<UserApiResponse>> 으로 변경해야함
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(users.getTotalPages())
+                .totalElements(users.getTotalElements())
+                .currentPage(users.getNumber())
+                .currentElements(users.getNumberOfElements())
+                .build();
+
+        return Header.OK(userApiResponseList, pagination);
+    }
+
+// 위 내용을 작성하면서 reponse메서드의 타입을 변경
+// Header<UserApiResponse> 에서 UserApiResponse 로 변경
